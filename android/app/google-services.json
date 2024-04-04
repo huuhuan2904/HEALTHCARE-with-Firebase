@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "402049394381",
+    "project_id": "medical-examination-app",
+    "storage_bucket": "medical-examination-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402049394381:android:85f999cb24d66e4f2d6b84",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402049394381-eh0j86u8hsfg9uan2s3iim286p2tmg63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXFZ58wm9nXXiED6KmPVllThv_TbGJC5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402049394381-eh0j86u8hsfg9uan2s3iim286p2tmg63.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

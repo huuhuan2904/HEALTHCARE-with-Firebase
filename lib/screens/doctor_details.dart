@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class DoctorDetails extends StatefulWidget {
-  const DoctorDetails({super.key});
+  final String avatar;
+  final String name;
+  final int phoneNumber;
+  final String address;
+  final String specialty;
+  final List experiences;
+  DoctorDetails(this.avatar, this.name, this.phoneNumber, this.address,
+      this.specialty, this.experiences);
 
   @override
   State<DoctorDetails> createState() => _DoctorDetailsState();
@@ -22,15 +29,14 @@ class _DoctorDetailsState extends State<DoctorDetails> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.only(top: 30),
+        padding: const EdgeInsets.only(top: 20),
         child: Column(
           children: [
-            const CircleAvatar(
-              radius: 40,
-              backgroundImage: NetworkImage(
-                  'https://cdn.cpdonline.co.uk/wp-content/uploads/2021/07/28125941/Doctors-CPD-couses.png'),
+            CircleAvatar(
+              radius: 60,
+              backgroundImage: NetworkImage(widget.avatar),
             ),
-            Container(
+            SizedBox(
               height: 200,
               width: double.infinity,
               child: Padding(
@@ -39,18 +45,18 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                   elevation: 10,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
-                      side: BorderSide(color: Colors.purple)),
+                      side: const BorderSide(color: Colors.purple)),
                   child: Column(
-                    children: const [
+                    children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8),
-                        child: Text('Bs Nguyễn Văn A',
-                            style: TextStyle(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Text(widget.name,
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 25)),
                       ),
-                      Text('Tim mạch, Xương khớp',
-                          style: TextStyle(fontSize: 17)),
-                      Padding(
+                      Text(widget.specialty,
+                          style: const TextStyle(fontSize: 17)),
+                      const Padding(
                         padding: EdgeInsets.only(left: 17, right: 17, top: 7),
                         child: Text(
                           'Bác sĩ Nguyễn Văn A có hơn 40 năm kinh nghiệm hoạt động trong lĩnh vực thăm khám và điều trị các bệnh lý tim mạch. Ngoài việc khám – chữa bệnh thì bác sĩ còn tham gia nghiên cứu khoa học với hơn 265 đề tài, tất cả đã được công bố trên tạp chí khoa học trong và ngoài nước.',
@@ -78,12 +84,12 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                             padding: const EdgeInsets.all(13),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                   'Liên hệ',
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
-                                Text('0987654321')
+                                Text(widget.phoneNumber.toString())
                               ],
                             ),
                           )),
@@ -110,8 +116,8 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                                 Wrap(
-                                  children: const [
-                                    Text('Số 1 Tôn Thất Tùng, Đống Đa, Hà Nội'),
+                                  children: [
+                                    Text(widget.address),
                                   ],
                                 )
                               ],
@@ -122,66 +128,117 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                 ],
               ),
             ),
-            Container(
-              height: 400,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Card(
-                  elevation: 10,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 13, left: 13),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Icon(
-                              Icons.work,
-                              color: Colors.purple,
-                            ),
-                            Text(
+            // SizedBox(
+            //   height: 400,
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(10),
+            //     child: Card(
+            //       elevation: 10,
+            //       shape: RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(20)),
+            //       child: Column(
+            //         children: [
+            //           Padding(
+            //             padding: const EdgeInsets.only(top: 13, left: 13),
+            //             child: Row(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: const [
+            //                 Icon(
+            //                   Icons.work,
+            //                   color: Colors.purple,
+            //                 ),
+            //                 Text(
+            //                   '  Kinh nghiệm',
+            //                   style:
+            //                       TextStyle(fontSize: 20, color: Colors.purple),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //           const Divider(
+            //             color: Colors.grey,
+            //           ),
+            //           _buildExpDoctor(
+            //               'Giảng viên chính - Trưởng Bộ môn Xương khớp - Đại học Y Dược Huế',
+            //               Icons.work_outline),
+            //           const Divider(
+            //             color: Colors.grey,
+            //           ),
+            //           _buildExpDoctor(
+            //               'Bác sĩ điều trị - Trưởng phòng khám Sức khỏe tim mạch - Bệnh viện trường đại học Y Dược Huế',
+            //               Icons.work_outline),
+            //           const Divider(
+            //             color: Colors.grey,
+            //           ),
+            //           _buildExpDoctor(
+            //               'Bác sĩ điều trị - Phó trưởng phòng khám Sức khỏe tim mạch - Bệnh viện Trung Ương Huế',
+            //               Icons.work_outline),
+            //           const Divider(
+            //             color: Colors.grey,
+            //           ),
+            //           _buildExpDoctor(
+            //               '2005: Chứng chỉ đào tạo chuyên môn Xương khớp tại Sydney, Australia',
+            //               Icons.work_outline),
+            //           const Divider(
+            //             color: Colors.grey,
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
+
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Card(
+                elevation: 10,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 13, left: 13),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Icon(
+                            Icons.work,
+                            color: Colors.purple,
+                          ),
+                          Expanded(
+                            child: Text(
                               '  Kinh nghiệm',
                               style:
                                   TextStyle(fontSize: 20, color: Colors.purple),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      const Divider(
+                    ),
+                    const Divider(
+                      color: Colors.grey,
+                    ),
+                    ListView.separated(
+                      shrinkWrap: true,
+                      itemCount: widget.experiences.length,
+                      separatorBuilder: (_, __) => const Divider(
                         color: Colors.grey,
                       ),
-                      _buildExpDoctor(
-                          'Giảng viên chính - Trưởng Bộ môn Xương khớp - Đại học Y Dược Huế',
-                          Icons.work_outline),
-                      const Divider(
-                        color: Colors.grey,
-                      ),
-                      _buildExpDoctor(
-                          'Bác sĩ điều trị - Trưởng phòng khám Sức khỏe tim mạch - Bệnh viện trường đại học Y Dược Huế',
-                          Icons.work_outline),
-                      const Divider(
-                        color: Colors.grey,
-                      ),
-                      _buildExpDoctor(
-                          'Bác sĩ điều trị - Phó trưởng phòng khám Sức khỏe tim mạch - Bệnh viện Trung Ương Huế',
-                          Icons.work_outline),
-                      const Divider(
-                        color: Colors.grey,
-                      ),
-                      _buildExpDoctor(
-                          '2005: Chứng chỉ đào tạo chuyên môn Xương khớp tại Sydney, Australia',
-                          Icons.work_outline),
-                      const Divider(
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          leading: const Icon(
+                            Icons.work_outline,
+                            color: Colors.purple,
+                          ),
+                          title: Text(widget.experiences[index]),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               height: 400,
               child: Padding(
                 padding: const EdgeInsets.all(10),

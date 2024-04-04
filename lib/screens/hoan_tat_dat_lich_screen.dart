@@ -1,8 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:project/overview_app_screen.dart';
+import 'package:intl/intl.dart';
+
+import 'overview_app_screen.dart';
 
 class HoanTatDatLichScreen extends StatefulWidget {
-  const HoanTatDatLichScreen({super.key});
+  final DateTime datechosen;
+  final TimeOfDay timechosen;
+  final String userName;
+  final int userPhoneNum;
+  final String userAddress;
+  final String doctorName;
+  final int doctorPhoneNum;
+  final String doctorAddress;
+  final String doctorAvatar;
+  const HoanTatDatLichScreen(
+      this.datechosen,
+      this.timechosen,
+      this.userName,
+      this.userPhoneNum,
+      this.userAddress,
+      this.doctorName,
+      this.doctorPhoneNum,
+      this.doctorAddress,
+      this.doctorAvatar,
+      {super.key});
 
   @override
   State<HoanTatDatLichScreen> createState() => _HoanTatDatLichScreenState();
@@ -13,7 +34,7 @@ class _HoanTatDatLichScreenState extends State<HoanTatDatLichScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hoàn tất đặt lịch'),
+        title: const Text('Hoàn tất đặt lịch'),
         centerTitle: true,
       ),
       body: Column(
@@ -27,79 +48,82 @@ class _HoanTatDatLichScreenState extends State<HoanTatDatLichScreen> {
             'Hoàn tất đặt khám!',
             style: TextStyle(fontSize: 20, color: Colors.green),
           ),
+          Text(
+            'Ngày khám: ${DateFormat.yMd().format(widget.datechosen)}',
+            style: const TextStyle(fontSize: 27),
+          ),
+          Text(
+            'Giờ khám: ${widget.timechosen.format(context).toString()}',
+            style: const TextStyle(fontSize: 27),
+          ),
           Card(
-            margin: EdgeInsets.only(top: 40),
+            margin: const EdgeInsets.only(top: 40),
             child: ListTile(
               isThreeLine: true,
-              leading: const CircleAvatar(
+              leading: CircleAvatar(
                   radius: 40,
-                  backgroundImage: NetworkImage(
-                      'https://cdn.cpdonline.co.uk/wp-content/uploads/2021/07/28125941/Doctors-CPD-couses.png'),
+                  backgroundImage: NetworkImage(widget.doctorAvatar),
                   child: Text('')),
-              title: const Text(
-                'BS. Nguyễn Văn A',
-                style: TextStyle(fontWeight: FontWeight.bold),
+              title: Text(
+                'BS. ${widget.doctorName}',
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    children: const [
-                      Icon(
+                    children: [
+                      const Icon(
                         Icons.place,
                         color: Colors.lightBlue,
                       ),
-                      const Text('Số 1 Tôn Thất Tùng, Đống Đa, Hà Nội'),
+                      Text(widget.doctorAddress),
                     ],
                   ),
                   Row(
-                    children: const [
-                      Icon(
+                    children: [
+                      const Icon(
                         Icons.phone,
                         color: Colors.lightBlue,
                       ),
-                      Text(' 9876543210'),
+                      Text(' ${widget.doctorPhoneNum}'),
                     ],
                   )
                 ],
               ),
             ),
           ),
-          Container(
+          SizedBox(
             width: double.infinity,
             child: Card(
-              margin: EdgeInsets.only(top: 0),
+              margin: const EdgeInsets.only(top: 0),
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      children: const [
-                        Icon(
+                      children: [
+                        const Icon(
                           Icons.person,
-                          color: Colors.lightBlue,
                         ),
-                        Text(' Phạm Hòn Việt')
+                        Text(' ${widget.userName}')
                       ],
                     ),
                     Row(
-                      children: const [
-                        Icon(
+                      children: [
+                        const Icon(
                           Icons.phone,
-                          color: Colors.lightBlue,
                         ),
-                        Text(' 0123456789')
+                        Text(' ${widget.userPhoneNum}')
                       ],
                     ),
                     Wrap(
-                      children: const [
-                        Icon(
+                      children: [
+                        const Icon(
                           Icons.place,
-                          color: Colors.lightBlue,
                         ),
-                        Text(
-                            '35 Nguyễn Đình Chiểu, Lê Đại Hành, Hai Bà Trưng, Hà Nội'),
+                        Text(widget.userAddress),
                       ],
                     ),
                   ],
@@ -134,7 +158,7 @@ class _HoanTatDatLichScreenState extends State<HoanTatDatLichScreen> {
           //     ),
           //   ),
           // )
-          SizedBox(
+          const SizedBox(
             height: 80,
           ),
           Row(
@@ -145,7 +169,7 @@ class _HoanTatDatLichScreenState extends State<HoanTatDatLichScreen> {
                 width: 150,
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 237, 211, 241),
+                      backgroundColor: const Color.fromARGB(255, 237, 211, 241),
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)))),
                   onPressed: () {
@@ -163,7 +187,7 @@ class _HoanTatDatLichScreenState extends State<HoanTatDatLichScreen> {
                 width: 150,
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: Colors.purple),
+                      side: const BorderSide(color: Colors.purple),
                       backgroundColor: Colors.purple,
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)))),
